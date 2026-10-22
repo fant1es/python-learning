@@ -4,7 +4,6 @@ def fetch_status(url: str) -> dict:
     """Выполняет сетевой запрос.
     Возвращает HTTP-статус и тип данных ответа."""
     response = requests.get(url, timeout=5)
-    response.raise_for_status() # Вызовет ошибку при HTTP статусе 4xx/5xx       
     
     return {
         "status_code": response.status_code, 
@@ -26,8 +25,6 @@ def main():
         print(f"Ошибка Timeout: время ожидания соединения истекло")
     except requests.exceptions.ConnectionError:
         print("Ошибка подключения: не удалось установить соединение")
-    except requests.exceptions.HTTPError as http_err:
-        print(f"Ошибка HTTP: HTTP статус ответа - {http_err.response.status_code}")
     except requests.exceptions.RequestException:
         print(f"Ошибка: непредвиденная ошибка подключения")
     
