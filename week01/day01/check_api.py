@@ -21,13 +21,13 @@ def main():
         print(f"HTTP статус: {data['status_code']}",
               f"Значение content-type: {data['content-type']}",
               sep="\n")
-        
+                
+    except requests.exceptions.Timeout:
+        print(f"Ошибка Timeout: время ожидания соединения истекло")
     except requests.exceptions.ConnectionError:
         print("Ошибка подключения: не удалось установить соединение")
     except requests.exceptions.HTTPError as http_err:
         print(f"Ошибка HTTP: HTTP статус ответа - {http_err.response.status_code}")
-    except requests.exceptions.Timeout:
-        print(f"Ошибка Timeout: время ожидания соединения истекло")
     except requests.exceptions.RequestException:
         print(f"Ошибка: непредвиденная ошибка подключения")
     
