@@ -1,4 +1,5 @@
 import requests
+import sys
 
 def fetch_status(url: str) -> dict:
     """Выполняет сетевой запрос.
@@ -23,10 +24,14 @@ def main():
                 
     except requests.exceptions.Timeout:
         print(f"Ошибка Timeout: время ожидания соединения истекло")
+        # Теперь с выводом кода завершения (важно для других скриптов, например)
+        sys.exit(1)
     except requests.exceptions.ConnectionError:
         print("Ошибка подключения: не удалось установить соединение")
+        sys.exit(2)
     except requests.exceptions.RequestException:
         print(f"Ошибка: непредвиденная ошибка подключения")
+        sys.exit(3)
     
 if __name__ == "__main__":
     main()
