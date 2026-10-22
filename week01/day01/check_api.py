@@ -11,11 +11,11 @@ def fetch_status(url: str) -> dict:
         "content-type": response.headers.get("content-type", "unknown")
         }
 
-def main():
-    print("Обращаюсь к https://api.github.com...")
+def main(url: str = "https://api.github.com"):
+    print(f"Обращаюсь к {url}...")
     
     try:
-        data = fetch_status(url="http://10.255.255.1")
+        data = fetch_status(url=url)
 
         print("Готово!")
         print(f"HTTP статус: {data['status_code']}",
