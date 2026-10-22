@@ -15,7 +15,7 @@ def main():
     print("Обращаюсь к https://api.github.com...", end="\n")
     
     try:
-        data = fetch_status(url="https://api.github.com")
+        data = fetch_status(url="http://10.255.255.1")
 
         print("Готово!", end="\n")
         print(f"HTTP статус: {data['status_code']}",
@@ -29,8 +29,8 @@ def main():
     except requests.exceptions.ConnectionError:
         print("Ошибка подключения: не удалось установить соединение")
         sys.exit(2)
-    except requests.exceptions.RequestException:
-        print(f"Ошибка: непредвиденная ошибка подключения")
+    except requests.exceptions.RequestException as exc:
+        print(f"Ошибка: непредвиденная ошибка подключения, {exc}")
         sys.exit(3)
     
 if __name__ == "__main__":
